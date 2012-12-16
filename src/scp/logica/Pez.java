@@ -1,8 +1,9 @@
-package logica;
+package scp.logica;
 
 import java.util.ArrayList;
 
 public class Pez {
+        private static Integer pecesTotal= null;
 	private int ID; 
 	private double direccion; //radianes
 	private double velocidad; //unidades / unidad de tiempo
@@ -55,6 +56,16 @@ public class Pez {
 	 * del espacio para moverse.
 	 */
 	
+        Pez(int posicionX, int posicionY){
+            this.posicionX=posicionX;
+            this.posicionY=posicionY;
+            if(pecesTotal==null)
+                pecesTotal=0;
+            ID=pecesTotal;
+            pecesTotal++;
+        }
+        
+        
 	private boolean alinearDireccion(){
 		//TODO
 		return false;
@@ -93,4 +104,16 @@ public class Pez {
 		//TODO
 		return false;
 	}
+
+    public int getPosicionX() {
+        return posicionX;
+    }
+
+    public int getPosicionY() {
+        return posicionY;
+    }
+
+    public int getID() {
+        return ID;
+    }
 }

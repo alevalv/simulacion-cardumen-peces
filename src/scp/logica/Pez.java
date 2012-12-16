@@ -65,8 +65,9 @@ public class Pez {
         Pez(int posicionX, int posicionY){
             this.posicionX=posicionX;
             this.posicionY=posicionY;
-            if(pecesTotal==null)
+            if(pecesTotal==null){
                 pecesTotal=0;
+            }
             ID=pecesTotal;
             pecesTotal++;
         }

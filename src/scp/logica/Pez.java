@@ -1,7 +1,6 @@
 package scp.logica;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Pez {
         private static Integer pecesTotal= null;

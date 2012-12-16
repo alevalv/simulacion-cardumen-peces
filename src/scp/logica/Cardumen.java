@@ -28,6 +28,13 @@ public class Cardumen {
         distanciasPeces = new HashMap<>();
     }
     
+    public Pez getPez(int id){
+        return peces.get(id);
+    }
+    
+    public int size(){
+        return peces.size();
+    }
     /*
      * Calcula una llave (única) para un par de peces para usarla
      * en la tabla hash. Funciona de la siguiente manera:
@@ -48,11 +55,13 @@ public class Cardumen {
             for(int j=i+1;j<peces.size();j++){
                 Pez pez1= peces.get(i);
                 Pez pez2= peces.get(j);
-                Integer llave = obtenerLlave(pez1, pez2);
+                Integer llave1 = obtenerLlave(pez1, pez2);
+                Integer llave2 = obtenerLlave(pez2, pez1);
                 int diferenciaX = pez1.getPosicionX() - pez2.getPosicionX();
                 int diferenciaY = pez1.getPosicionY() - pez2.getPosicionY();
                 Double distancia = Math.sqrt(diferenciaX*diferenciaX + diferenciaY*diferenciaY);
-                distanciasPeces.put(llave, distancia);
+                distanciasPeces.put(llave1, distancia);
+                distanciasPeces.put(llave2, distancia);
            }
         }
     }

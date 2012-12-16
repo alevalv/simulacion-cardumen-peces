@@ -1,6 +1,7 @@
 package scp.logica;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Pez {
         private static Integer pecesTotal= null;
@@ -50,11 +51,16 @@ public class Pez {
 	 * a menos que encuentre comida o un depredador
 	 */
 	
-	private boolean cercaAlFinal;
+	private static double distanciaFinal;
 	/*
-	 * Flag que indica si un pez se encuentra cerca del final
-	 * del espacio para moverse.
+	 * Distancia que indica cuando un pez debe moverse si se encuentra
+         * muy cerca al borde de la pantalla
 	 */
+        
+        public static double distanciaMaximaVecinos;
+        /*
+         * Distancia maxima en la cual un pez puede ser vecino de otro pez
+         */
 	
         Pez(int posicionX, int posicionY){
             this.posicionX=posicionX;
@@ -63,6 +69,16 @@ public class Pez {
                 pecesTotal=0;
             ID=pecesTotal;
             pecesTotal++;
+        }
+        
+        public void refrescarVecinos(Cardumen cardumen){
+            for(int i=0;i<cardumen.size();i++){
+                Pez pez = cardumen.getPez(i);
+                double distancia = cardumen.obtenerDistancia(this, pez);
+                if(distancia<=Pez.distanciaMaximaVecinos){
+                    vecinos.add(pez);
+                }
+            }
         }
         
         

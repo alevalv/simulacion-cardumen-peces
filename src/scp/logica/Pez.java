@@ -76,7 +76,7 @@ public class Pez {
             for(int i=0;i<cardumen.size();i++){
                 Pez pez = cardumen.getPez(i);
                 double distancia = cardumen.obtenerDistancia(this, pez);
-                if(distancia<=Pez.distanciaMaximaVecinos){
+                if(distancia<=Pez.distanciaMaximaVecinos && distancia!=-1){
                     vecinos.add(pez);
                 }
             }

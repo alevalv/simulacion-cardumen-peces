@@ -8,7 +8,6 @@ public class Vector {
         this.x = x;
         this.y = y;
     }
-
     public double getX() {
         return x;
     }
@@ -19,6 +18,14 @@ public class Vector {
     
     public double magnitud(){
         return Math.sqrt(x*x + y*y);
+    }
+    
+    public double direccion(){
+        double dir = Math.atan2(y, x);
+        if(dir<0){
+            dir+=2*Math.PI;
+        }
+        return dir;
     }
     
     public static Vector add(Vector v1, Vector v2){

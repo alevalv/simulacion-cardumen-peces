@@ -31,11 +31,6 @@ public class Pez {
 	 * enteros, y me parece que sería mejor usar doubles para
 	 * realizar una animación más clara.
 	 */
-	private static double anguloDeVision; //radianes
-	/*
-	 * Si queremos agregar comida y depredadores los peces
-	 * deberían tener un rango de visión.
-	 */
 	private static double distanciaMaximaDeVision; //unidades
 	/*
 	 * que tan lejos puede ver el pez.

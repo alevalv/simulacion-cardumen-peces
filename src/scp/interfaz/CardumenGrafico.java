@@ -4,6 +4,7 @@
  */
 package scp.interfaz;
 
+import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -39,7 +40,7 @@ public class CardumenGrafico {
         }
     }
     
-    public void pintarCardumen(Cardumen cardumen){
-        
+    public Graphics pintarCardumen(Cardumen cardumen){
+        return null;
     }
 }

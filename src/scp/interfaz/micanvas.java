@@ -28,11 +28,7 @@ public class micanvas extends Canvas implements ActionListener, MouseListener{
     //creamos un vector de mibolita para todas las bolas que queramos
     private Vector<Pezh> peces= new Vector<Pezh>(5,1);
     //creacion de un bufferedimage para el parpadeo
-    private BufferedImage imagen;
-    //un bufer para graficos
-    private Graphics bufer;
-    //un boleano que nos indicara si ya se empezo el evento
-    private boolean empezar=false;
+    private BufferedImage imageBufferPeces;
     //se crea un timer que manejara todas la bolitas
     private Dimension d;
     Timer time;
@@ -42,6 +38,7 @@ public class micanvas extends Canvas implements ActionListener, MouseListener{
         setBackground(Color.white);
         setSize(x,y);
         time = new Timer(5, this);
+        /*
         d=this.getSize();
         imagenpez=  new ImageIcon(getClass().getResource("fish.png"));
         Pezh.limx=d.width;
@@ -52,11 +49,13 @@ public class micanvas extends Canvas implements ActionListener, MouseListener{
         for(int a=0; a<10;a++){
             peces.add(new Pezh(Pezh.gen.nextInt(d.width),Pezh.gen.nextInt(d.height)));
         }
+        */
         
 
     }
     @Override
     public void paint(Graphics g){
+        /*
         //Usando un bufferedimage evitamos el parpadeo de la pantalla
         Graphics2D g2d=(Graphics2D)bufer;
         g2d.clearRect(0, 0, d.width, d.height);
@@ -76,19 +75,12 @@ public class micanvas extends Canvas implements ActionListener, MouseListener{
            
         }
         //dibujamos la buffered image en pantalla
-        g.drawImage(imagen, 0, 0, this);
+        */ 
+        g.drawImage(imageBufferPeces, 0, 0, this);
         
 
     }
     
-    int TailX(int direccion){
-        if(direccion==2 || direccion==3) return 10;
-        else return -7;
-    }
-     int TailY(int direccion){
-        if(direccion==1 || direccion==2) return 10;
-        else return -7;
-    }
     //redefinimos el update para que envie directamente a paint sin borrar la pantalla
     @Override
     public void update(Graphics g){
@@ -109,19 +101,15 @@ public class micanvas extends Canvas implements ActionListener, MouseListener{
         }
         repaint();
     }
-
-    private int random(int num){
-        return (int) (Math.random()*num)+1;
+    
+    public void nuevoBuffer(BufferedImage imagen){
+        imageBufferPeces = imagen;
+        repaint();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(empezar==false){
-            time.start();
-            empezar=true;
-        }
-        else if(empezar==true)
-            peces.add(new Pezh(e.getX(),e.getY()));
+        time.start();
     }
     
     @Override

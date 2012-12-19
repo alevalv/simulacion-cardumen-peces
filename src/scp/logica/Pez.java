@@ -122,6 +122,10 @@ public class Pez {
         return posicion.getY();
     }
 
+    public double getDireccion(){
+        return velocidad.direccion();
+    }
+    
     public int getID() {
         return ID;
     }

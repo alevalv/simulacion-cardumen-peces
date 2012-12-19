@@ -37,7 +37,7 @@ public class Pezh {
         if(direccion==1){
             x++;
             y--;
-            if(x==limx-12){
+            if(x==limx){
                 direccion=2;
             }
             if(y==0){
@@ -63,17 +63,17 @@ public class Pezh {
             if(x==0){
                 direccion=4;
             }
-            if(y==limy-12){
+            if(y==limy){
                 direccion=2;
             }
         }
         if(direccion==4){
             x++;
             y++;
-            if(x==limx-12){
+            if(x==limx){
                 direccion=3;
             }
-            if(y==limy-12){
+            if(y==limy){
                 direccion=1;
             }
         }

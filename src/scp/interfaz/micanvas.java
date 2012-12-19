@@ -57,14 +57,17 @@ public class micanvas extends Canvas implements ActionListener, MouseListener{
     }
     @Override
     public void paint(Graphics g){
-        int tailx=0, taily=0;
         //Usando un bufferedimage evitamos el parpadeo de la pantalla
-        bufer.clearRect(0, 0, d.width, d.height);
-        bufer.setColor(Color.white);
-        bufer.fillRect(0, 0, d.width, d.height);
+        Graphics2D g2d=(Graphics2D)bufer;
+        g2d.clearRect(0, 0, d.width, d.height);
+        
+        g2d.setColor(Color.CYAN);
+        g2d.fillRect(0, 0, d.width, d.height);
         //se dibujan las bolitas en imagen
         for(int i=0; i<peces.size(); i++){
-            bufer.drawImage(imagenpez.getImage(), peces.elementAt(i).x(), peces.elementAt(i).y(), this);
+            //g2d.rotate(i);
+            g2d.drawImage(imagenpez.getImage(), peces.elementAt(i).x(), peces.elementAt(i).y(), this);
+            //g2d.rotate(-i);
             //bufer.setColor(peces.elementAt(i).Color());
             //bufer.fillOval(peces.elementAt(i).x(), peces.elementAt(i).y(), 14, 14);
             //tailx=TailX(peces.elementAt(i).getDireccion());

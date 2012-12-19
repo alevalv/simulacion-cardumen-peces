@@ -32,28 +32,18 @@ public class Pez {
 	 * enteros, y me parece que sería mejor usar doubles para
 	 * realizar una animación más clara.
 	 */
-	private static double distanciaMaximaDeVision; //unidades
-	/*
-	 * que tan lejos puede ver el pez.
-	 */
-	
 	
 	/*
 	 * Cada pez tratará de seguir la posición de sus vecinos
 	 * a menos que encuentre comida o un depredador
 	 */
-	
-	private static double distanciaFinal;
-	/*
-	 * Distancia que indica cuando un pez debe moverse5 si se encuentra
-         * muy cerca al borde de la pantalla
-	 */
         
-        public static double distanciaMaximaVecinos;
+        private static final double distanciaMaximaVecinos = 20;
         /*
          * Distancia maxima en la cual un pez puede ser vecino de otro pez
          */
         
+        private static final double distanciaMinimaEntrePeces=3;
 	
         Pez(double x, double y){
             posicion = new Vector(x, y);
@@ -131,6 +121,12 @@ public class Pez {
         return ID;
     }
     
+    public double distanciaCon(Pez pez){
+        double diferenciaX = this.getX() - pez.getX();
+        double diferenciaY = this.getY() - pez.getY();
+        double distancia = Math.sqrt(diferenciaX*diferenciaX + diferenciaY*diferenciaY);
+        return distancia;
+    }
     
     //REGLAS DE MOVIMIENTO
     
@@ -160,5 +156,18 @@ public class Pez {
         Vector centroDeMasa = centroDeMasa();
         centroDeMasa = Vector.div(centroDeMasa, vecinos.size());
         return Vector.div(Vector.sub(centroDeMasa, posicion), 100);
+    }
+    
+    /*
+     * los peces tratarán de mantener una distancia minima de otros peces
+     */
+    private Vector regla2(){
+        Vector c = new Vector();
+        for(int i=0;i<vecinos.size();i++){
+            if(distanciaCon(vecinos.get(i))< distanciaMinimaEntrePeces){
+                c = Vector.sub(c, (Vector.sub(this.posicion, vecinos.get(i).posicion)));
+            }
+        }
+        return c;
     }
 }

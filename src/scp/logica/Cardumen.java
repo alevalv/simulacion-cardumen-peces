@@ -64,9 +64,7 @@ public class Cardumen {
                 Pez pez1= peces.get(i);
                 Pez pez2= peces.get(j);
                 Integer llave = obtenerLlave(pez1, pez2);
-                double diferenciaX = pez1.getX() - pez2.getX();
-                double diferenciaY = pez1.getY() - pez2.getY();
-                Double distancia = Math.sqrt(diferenciaX*diferenciaX + diferenciaY*diferenciaY);
+                Double distancia = pez1.distanciaCon(pez2);
                 distanciasPeces.put(llave, distancia);
            }
         }

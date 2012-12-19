@@ -8,6 +8,7 @@ public class Pez {
 	private Vector posicion; // posicion en x y y
 	private Vector velocidad; //unidades / unidad de tiempo
         private static final double velocidadMaxima=10;
+        private static final double velocidadMinima=2;
 	/*
 	 * Deberia tener un limite, y un minimo, los peces
 	 * no se quedan quietos creo.
@@ -137,9 +138,12 @@ public class Pez {
     
     //REGLAS DE MOVIMIENTO
     
-    private void limitarVelocidad(){
+    private void reguladorVelocidad(){
         if(velocidad.magnitud() > velocidadMaxima){
             velocidad = Vector.mult(Vector.div(velocidad, velocidad.magnitud()), velocidadMaxima);
+        }
+        else if(velocidad.magnitud() < velocidadMinima){
+            velocidad = Vector.mult(Vector.div(velocidad, velocidad.magnitud()), velocidadMinima*2);
         }
     }
     
@@ -178,7 +182,7 @@ public class Pez {
         Vector c = new Vector();
         for(int i=0;i<vecinos.size();i++){
             if(distanciaCon(vecinos.get(i))< distanciaMinimaEntrePeces){
-                c = Vector.add(c, (Vector.sub(vecinos.get(i).posicion, posicion)));
+                c = Vector.add(c, (Vector.sub(posicion, vecinos.get(i).posicion)));
             }
         }
         return c;
@@ -194,7 +198,7 @@ public class Pez {
             salida = Vector.add(salida, vecinos.get(i).velocidad);
         }
         salida = Vector.div(salida, vecinos.size());
-        return Vector.div(Vector.sub(salida, velocidad), 8);
+        return Vector.div(Vector.sub(salida, velocidad), 4);
     }
     /*
      * Los peces tratarán de acercarse cuando se encuentren muy cerca al borde
@@ -223,7 +227,7 @@ public class Pez {
         Vector regla3= regla3();
         Vector regla4= regla4();
         velocidad = Vector.add(Vector.add(Vector.add(Vector.add(regla3, regla4), regla2), regla1), velocidad);
-        limitarVelocidad();
+        reguladorVelocidad();
         posicion = Vector.add(posicion, velocidad);
     }
     

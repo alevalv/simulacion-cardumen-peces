@@ -27,8 +27,8 @@ public class Cardumen {
         peces = new ArrayList<>(size);
         distanciasPeces = new HashMap<>();
         for(int i=0;i<size;i++){
-            double x= Math.random()*width;
-            double y= Math.random()*height;
+            double x= Math.random()*(width-10)+10;
+            double y= Math.random()*(height-10)+10;
             Pez pez = new Pez(x, y);
             peces.add(pez);
         }

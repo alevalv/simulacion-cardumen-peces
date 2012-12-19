@@ -45,6 +45,10 @@ public class Pez {
         
         private static final double distanciaMinimaEntrePeces=13;
 	
+        private static final double minX=0;
+        private static final double minY=0;
+        private static final double maxX=1000;
+        private static final double maxY=1000;
         Pez(double x, double y){
             posicion = new Vector(x, y);
             velocidad = new Vector(10, 0);  //randomizar
@@ -184,13 +188,33 @@ public class Pez {
         salida = Vector.div(salida, vecinos.size());
         return Vector.div(Vector.sub(salida, velocidad), 8);
     }
+    /*
+     * Los peces tratarán de acercarse cuando se encuentren muy cerca al borde
+     * de la pantalla
+     */
+    private Vector regla4(){
+        Vector v = new Vector();
+        if(posicion.getX()<minX){
+            v.setX(10);
+        }
+        else if(posicion.getX()>maxX){
+            v.setX(-10);
+        }
+        if(posicion.getY()<minY){
+            v.setY(10);
+        }
+        else if(posicion.getY()>maxY){
+            v.setY(-10);
+        }
+        return v;
+    }
     
     public void mover(){
         Vector regla1= regla1();
         Vector regla2= regla2();
         Vector regla3= regla3();
-        
-        velocidad = Vector.add(Vector.add(Vector.add(regla3, regla2), regla1), velocidad);
+        Vector regla4= regla4();
+        velocidad = Vector.add(Vector.add(Vector.add(Vector.add(regla3, regla4), regla2), regla1), velocidad);
         limitarVelocidad();
         posicion = Vector.add(posicion, velocidad);
     }

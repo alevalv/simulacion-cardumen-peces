@@ -22,10 +22,18 @@ public class Cardumen {
      * con el fin de obtener los vecinos de cada pez
      */
     
-    void Cardumen(int size){
+    void Cardumen(int size, int width, int height){
         corrimiento = Integer.toBinaryString(size-1).length();
         peces = new ArrayList<>(size);
         distanciasPeces = new HashMap<>();
+        for(int i=0;i<size;i++){
+            double x= Math.random()*width;
+            double y= Math.random()*height;
+            Pez pez = new Pez(x, y);
+            peces.add(pez);
+        }
+        refrescarDistancias();
+        refrescarVecinos();
     }
     
     public Pez getPez(int id){
@@ -55,13 +63,11 @@ public class Cardumen {
             for(int j=i+1;j<peces.size();j++){
                 Pez pez1= peces.get(i);
                 Pez pez2= peces.get(j);
-                Integer llave1 = obtenerLlave(pez1, pez2);
-                Integer llave2 = obtenerLlave(pez2, pez1);
+                Integer llave = obtenerLlave(pez1, pez2);
                 double diferenciaX = pez1.getX() - pez2.getX();
                 double diferenciaY = pez1.getY() - pez2.getY();
                 Double distancia = Math.sqrt(diferenciaX*diferenciaX + diferenciaY*diferenciaY);
-                distanciasPeces.put(llave1, distancia);
-                distanciasPeces.put(llave2, distancia);
+                distanciasPeces.put(llave, distancia);
            }
         }
     }
@@ -73,10 +79,23 @@ public class Cardumen {
         Integer llave = obtenerLlave(pez1, pez2);
         Double salida = distanciasPeces.get(llave);
         if(salida== null){
-            return -1;
+            llave = obtenerLlave(pez2, pez1);
+            salida = distanciasPeces.get(llave);
+            if(salida == null){
+                return -1;
+            }
+            else{
+                return salida;
+            }
         }
         else{
             return salida;
+        }
+    }
+    
+    private void refrescarVecinos(){
+        for(int i=0;i<peces.size();i++){
+            peces.get(i).refrescarVecinos(this);
         }
     }
 }

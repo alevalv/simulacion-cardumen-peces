@@ -170,4 +170,17 @@ public class Pez {
         }
         return c;
     }
+    
+    /*
+     * Los peces tratarán de mantener una velocidad parecida a la de sus vecinos
+     */
+    
+    private Vector regla3(){
+        Vector salida = new Vector();
+        for(int i=0;i<vecinos.size();i++){
+            salida = Vector.add(salida, vecinos.get(i).velocidad);
+        }
+        salida = Vector.div(salida, vecinos.size());
+        return Vector.div(Vector.sub(salida, velocidad), 8);
+    }
 }

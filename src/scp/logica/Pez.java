@@ -218,4 +218,9 @@ public class Pez {
         limitarVelocidad();
         posicion = Vector.add(posicion, velocidad);
     }
+    
+    @Override
+    public String toString(){
+        return "ID:"+ID+"X:"+posicion.getX()+"Y:"+posicion.getY();
+    }
 }

@@ -32,6 +32,7 @@ public class Cardumen {
             Pez pez = new Pez(x, y);
             peces.add(pez);
         }
+        System.out.println(peces);
         refrescarDistancias();
         refrescarVecinos();
     }
@@ -57,7 +58,7 @@ public class Cardumen {
         return llave;
     }
     
-    public void refrescarDistancias(){
+    private void refrescarDistancias(){
         distanciasPeces.clear();
         for(int i=0;i<peces.size();i++){
             for(int j=i+1;j<peces.size();j++){

@@ -49,7 +49,7 @@ public class CardumenGrafico {
         Graphics g = salida.getGraphics();
         Graphics2D g2d=(Graphics2D)g;
         g2d.clearRect(0, 0, width, height);
-        g2d.setColor(Color.WHITE);
+        g2d.setColor(Color.CYAN);
         g2d.fillRect(0, 0, width, height);
         for(int i=0;i<cardumen.size();i++){
             Pez pez = cardumen.getPez(i);

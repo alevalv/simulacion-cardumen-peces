@@ -7,14 +7,8 @@ package scp.interfaz;
 
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.util.Vector;
-import javax.swing.ImageIcon;
-import javax.swing.Timer;
 
 
 /**
@@ -24,20 +18,15 @@ import javax.swing.Timer;
  *
  */
 
-public class micanvas extends Canvas implements ActionListener, MouseListener{
-    //creamos un vector de mibolita para todas las bolas que queramos
-    private Vector<Pezh> peces= new Vector<Pezh>(5,1);
+public class micanvas extends Canvas{
     //creacion de un bufferedimage para el parpadeo
     private BufferedImage imageBufferPeces;
     //se crea un timer que manejara todas la bolitas
     private Dimension d;
-    Timer time;
-    ImageIcon imagenpez;
     
     micanvas(int x, int y){
         setBackground(Color.white);
         setSize(x,y);
-        time = new Timer(5, this);
         /*
         d=this.getSize();
         imagenpez=  new ImageIcon(getClass().getResource("fish.png"));
@@ -86,40 +75,10 @@ public class micanvas extends Canvas implements ActionListener, MouseListener{
     public void update(Graphics g){
         paint(g);
     }
-
-
-    //nuestro actionperformed se activara con el timer y movera todas las bolas
-    @Override
-    public void actionPerformed(ActionEvent arg0) {
-        d=this.getSize();
-        Pezh.limx=d.width;
-        Pezh.limy=d.height;
-        this.setSize(d);
-        for(int k=0; k<peces.size(); k++){
-            peces.elementAt(k).mover();
-            //System.out.println(bolas.elementAt(k));
-        }
-        repaint();
-    }
     
     public void nuevoBuffer(BufferedImage imagen){
         imageBufferPeces = imagen;
         repaint();
     }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        time.start();
-    }
-    
-    @Override
-    public void mouseClicked(MouseEvent e) {}
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-    @Override
-    public void mouseExited(MouseEvent e) {}
-
 
 }

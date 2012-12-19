@@ -24,7 +24,7 @@ public class CardumenGrafico {
     private ArrayList<BufferedImage> imagenesPeces;
     public CardumenGrafico() throws IOException {
         imagenesPeces = new ArrayList<>(360);
-        imagenesPeces.add(ImageIO.read(getClass().getResource("fish.png")));
+        imagenesPeces.add(ImageIO.read(getClass().getResource("/resources/boid.png")));
         inicializarPeces();
     }
     
@@ -49,7 +49,7 @@ public class CardumenGrafico {
         Graphics g = salida.getGraphics();
         Graphics2D g2d=(Graphics2D)g;
         g2d.clearRect(0, 0, width, height);
-        g2d.setColor(Color.CYAN);
+        g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, width, height);
         for(int i=0;i<cardumen.size();i++){
             Pez pez = cardumen.getPez(i);

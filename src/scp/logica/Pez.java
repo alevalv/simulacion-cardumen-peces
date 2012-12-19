@@ -38,12 +38,12 @@ public class Pez {
 	 * a menos que encuentre comida o un depredador
 	 */
         
-        private static final double distanciaMaximaVecinos = 20;
+        private static final double distanciaMaximaVecinos = 75;
         /*
          * Distancia maxima en la cual un pez puede ser vecino de otro pez
          */
         
-        private static final double distanciaMinimaEntrePeces=3;
+        private static final double distanciaMinimaEntrePeces=13;
 	
         Pez(double x, double y){
             posicion = new Vector(x, y);
@@ -182,5 +182,15 @@ public class Pez {
         }
         salida = Vector.div(salida, vecinos.size());
         return Vector.div(Vector.sub(salida, velocidad), 8);
+    }
+    
+    public void mover(){
+        Vector regla1= regla1();
+        Vector regla2= regla2();
+        Vector regla3= regla3();
+        
+        velocidad = Vector.add(Vector.add(Vector.add(regla3, regla2), regla1), velocidad);
+        limitarVelocidad();
+        posicion = Vector.add(posicion, velocidad);
     }
 }

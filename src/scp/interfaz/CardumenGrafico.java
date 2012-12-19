@@ -53,8 +53,8 @@ public class CardumenGrafico {
         g2d.fillRect(0, 0, width, height);
         for(int i=0;i<cardumen.size();i++){
             Pez pez = cardumen.getPez(i);
-            if(pez.getX()<Pez.minX || pez.getY()<Pez.minY ||
-                    pez.getX()>Pez.maxX || pez.getY()>Pez.maxY){
+            if(pez.getX()-5<Pez.minX || pez.getY()-5<Pez.minY ||
+                    pez.getX()+5>=Pez.maxX || pez.getY()+5>Pez.maxY){
                 continue;
             }
             else{

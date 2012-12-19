@@ -7,7 +7,7 @@ public class Pez {
 	private int ID; 
 	private Vector posicion; // posicion en x y y
 	private Vector velocidad; //unidades / unidad de tiempo
-        private static final double velocidadMaxima=5;
+        private static final double velocidadMaxima=10;
 	/*
 	 * Deberia tener un limite, y un minimo, los peces
 	 * no se quedan quietos creo.
@@ -38,12 +38,12 @@ public class Pez {
 	 * a menos que encuentre comida o un depredador
 	 */
         
-        private static final double distanciaMaximaVecinos = 75;
+        private static final double distanciaMaximaVecinos = 100;
         /*
          * Distancia maxima en la cual un pez puede ser vecino de otro pez
          */
         
-        private static final double distanciaMinimaEntrePeces=13;
+        private static final double distanciaMinimaEntrePeces=30;
 	
         public static final double minX=0;
         public static final double minY=0;
@@ -51,7 +51,9 @@ public class Pez {
         public static final double maxY=600;
         Pez(double x, double y){
             posicion = new Vector(x, y);
-            velocidad = new Vector(10, 0);  //randomizar
+            double vx = Math.random()*15 - 5;
+            double vy = Math.random()*15 - 5;
+            velocidad = new Vector(vx, vy);  //randomizar
             vecinos = new ArrayList<>();
             if(pecesTotal==null){
                 pecesTotal=0;
@@ -176,7 +178,7 @@ public class Pez {
         Vector c = new Vector();
         for(int i=0;i<vecinos.size();i++){
             if(distanciaCon(vecinos.get(i))< distanciaMinimaEntrePeces){
-                c = Vector.sub(c, (Vector.sub(this.posicion, vecinos.get(i).posicion)));
+                c = Vector.add(c, (Vector.sub(vecinos.get(i).posicion, posicion)));
             }
         }
         return c;
@@ -201,27 +203,27 @@ public class Pez {
     private Vector regla4(){
         Vector v = new Vector();
         if(posicion.getX()<minX){
-            v.setX(100);
+            v.setX(10);
         }
         else if(posicion.getX()>maxX){
-            v.setX(-100);
+            v.setX(-10);
         }
         if(posicion.getY()<minY){
-            v.setY(100);
+            v.setY(10);
         }
         else if(posicion.getY()>maxY){
-            v.setY(-100);
+            v.setY(-10);
         }
         return v;
     }
     
     public void mover(){
-        Vector regla1= regla1();
+        Vector regla1= new Vector(); // regla1();
         Vector regla2= regla2();
         Vector regla3= regla3();
         Vector regla4= regla4();
         velocidad = Vector.add(Vector.add(Vector.add(Vector.add(regla3, regla4), regla2), regla1), velocidad);
-        //limitarVelocidad();
+        limitarVelocidad();
         posicion = Vector.add(posicion, velocidad);
     }
     

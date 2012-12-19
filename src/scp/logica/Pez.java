@@ -7,7 +7,7 @@ public class Pez {
 	private int ID; 
 	private Vector posicion; // posicion en x y y
 	private Vector velocidad; //unidades / unidad de tiempo
-        private static final double velocidadMaxima=10;
+        private static final double velocidadMaxima=5;
 	/*
 	 * Deberia tener un limite, y un minimo, los peces
 	 * no se quedan quietos creo.
@@ -45,10 +45,10 @@ public class Pez {
         
         private static final double distanciaMinimaEntrePeces=13;
 	
-        private static final double minX=0;
-        private static final double minY=0;
-        private static final double maxX=1000;
-        private static final double maxY=1000;
+        public static final double minX=0;
+        public static final double minY=0;
+        public static final double maxX=1000;
+        public static final double maxY=600;
         Pez(double x, double y){
             posicion = new Vector(x, y);
             velocidad = new Vector(10, 0);  //randomizar
@@ -144,13 +144,19 @@ public class Pez {
     private Vector centroDeMasa(){
         double x=0;
         double y=0;
-        for(int i=0;i<vecinos.size();i++){
+        if(vecinos.size()==0){
+            return new Vector(posicion.getX(), posicion.getY());
+        }
+        else{
+            for(int i=0;i<vecinos.size();i++){
             x+=vecinos.get(i).getX();
             y+=vecinos.get(i).getY();
         }
-        x/=vecinos.size();
-        y/=vecinos.size();
-        return new Vector(x, y);
+            x/=vecinos.size();
+            y/=vecinos.size();
+            return new Vector(x, y);
+        }
+        
     }
     
     
@@ -160,7 +166,7 @@ public class Pez {
     private Vector regla1(){
         Vector centroDeMasa = centroDeMasa();
         centroDeMasa = Vector.div(centroDeMasa, vecinos.size());
-        return Vector.div(Vector.sub(centroDeMasa, posicion), 100);
+        return Vector.div(Vector.sub(centroDeMasa, posicion), 10);
     }
     
     /*
@@ -195,16 +201,16 @@ public class Pez {
     private Vector regla4(){
         Vector v = new Vector();
         if(posicion.getX()<minX){
-            v.setX(10);
+            v.setX(100);
         }
         else if(posicion.getX()>maxX){
-            v.setX(-10);
+            v.setX(-100);
         }
         if(posicion.getY()<minY){
-            v.setY(10);
+            v.setY(100);
         }
         else if(posicion.getY()>maxY){
-            v.setY(-10);
+            v.setY(-100);
         }
         return v;
     }
@@ -215,7 +221,7 @@ public class Pez {
         Vector regla3= regla3();
         Vector regla4= regla4();
         velocidad = Vector.add(Vector.add(Vector.add(Vector.add(regla3, regla4), regla2), regla1), velocidad);
-        limitarVelocidad();
+        //limitarVelocidad();
         posicion = Vector.add(posicion, velocidad);
     }
     

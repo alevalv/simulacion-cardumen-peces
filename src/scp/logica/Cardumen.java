@@ -106,4 +106,8 @@ public class Cardumen {
             peces.get(i).mover();
         }
     }
+    
+    public void mover(int i){
+        peces.get(i).mover();
+    }
 }

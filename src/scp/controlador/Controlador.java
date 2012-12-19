@@ -24,6 +24,7 @@ public class Controlador implements ActionListener {
     private micanvas Canvas;
     int width;
     int height;
+    int i;
     
     public Controlador(int peces, int width, int height, micanvas Canvas) throws IOException {
         cardumen = new Cardumen(peces, width, height);
@@ -31,13 +32,16 @@ public class Controlador implements ActionListener {
         this.Canvas=Canvas;
         this.width=width;
         this.height=height;
-        time = new Timer(10, this);
+        i=0;
+        time = new Timer(100, this);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         cardumen.mover();
+        //i= (i+1)%100;
         Canvas.nuevoBuffer(cardumenGrafico.pintarCardumen(cardumen, width, height));
+        //time.stop();
     }
     
     public void empezarTimer(){

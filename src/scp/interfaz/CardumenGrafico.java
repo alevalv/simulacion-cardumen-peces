@@ -53,12 +53,18 @@ public class CardumenGrafico {
         g2d.fillRect(0, 0, width, height);
         for(int i=0;i<cardumen.size();i++){
             Pez pez = cardumen.getPez(i);
-            int direccion = (int) Math.toDegrees(pez.getDireccion());
-            if(direccion==360){
-                direccion=0;
+            if(pez.getX()<Pez.minX || pez.getY()<Pez.minY ||
+                    pez.getX()>Pez.maxX || pez.getY()>Pez.maxY){
+                continue;
             }
-            BufferedImage imagenPez = imagenesPeces.get(direccion);
-            g2d.drawImage(imagenPez, null, (int) pez.getX(), (int) pez.getY());
+            else{
+                int direccion = (int) Math.toDegrees(pez.getDireccion());
+                //if(direccion==360){
+                //  direccion=0;
+                //}
+                BufferedImage imagenPez = imagenesPeces.get(direccion);
+                g2d.drawImage(imagenPez, null, (int) Math.rint(pez.getX()+5),(int) Math.rint(pez.getY()+5));
+            }
         }
         return salida;
     }

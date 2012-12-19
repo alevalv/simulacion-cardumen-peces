@@ -7,7 +7,11 @@ package scp.interfaz;
 
 import java.awt.Container;
 import java.awt.Rectangle;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import scp.controlador.Controlador;
 
 public class Acuario extends JFrame{
     Container contenedor;
@@ -23,5 +27,12 @@ public class Acuario extends JFrame{
         Canvas = new micanvas(r.width,r.height);
         
         contenedor.add(Canvas);
+        Controlador controlador;
+        try {
+            controlador = new Controlador(100, 1000, 600, Canvas);
+            controlador.empezarTimer();
+        } catch (IOException ex) {
+            Logger.getLogger(Acuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 }

@@ -101,6 +101,8 @@ public class Cardumen {
     
     
     public void mover(){
-        
+        for(int i=0;i<peces.size();i++){
+            peces.get(i).mover();
+        }
     }
 }

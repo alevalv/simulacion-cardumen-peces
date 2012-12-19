@@ -25,6 +25,7 @@ public class CardumenGrafico {
     public CardumenGrafico() throws IOException {
         imagenesPeces = new ArrayList<>(360);
         imagenesPeces.add(ImageIO.read(getClass().getResource("fish.png")));
+        inicializarPeces();
     }
     
     private void inicializarPeces(){

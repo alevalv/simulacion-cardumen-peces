@@ -48,6 +48,7 @@ public class Pez {
         Pez(double x, double y){
             posicion = new Vector(x, y);
             velocidad = new Vector(10, 0);  //randomizar
+            vecinos = new ArrayList<>();
             if(pecesTotal==null){
                 pecesTotal=0;
             }

@@ -22,7 +22,7 @@ import scp.logica.Pez;
  */
 public class CardumenGrafico {
     private ArrayList<BufferedImage> imagenesPeces;
-    CardumenGrafico() throws IOException {
+    public CardumenGrafico() throws IOException {
         imagenesPeces = new ArrayList<>(360);
         imagenesPeces.add(ImageIO.read(getClass().getResource("fish.png")));
     }

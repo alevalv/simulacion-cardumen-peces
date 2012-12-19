@@ -22,7 +22,7 @@ public class Cardumen {
      * con el fin de obtener los vecinos de cada pez
      */
     
-    Cardumen(int size, int width, int height){
+    public Cardumen(int size, int width, int height){
         corrimiento = Integer.toBinaryString(size-1).length();
         peces = new ArrayList<>(size);
         distanciasPeces = new HashMap<>();

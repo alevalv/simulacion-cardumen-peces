@@ -29,7 +29,7 @@ public class CardumenGrafico {
             AffineTransform tx = new AffineTransform();
             // last, width = height and height = width :)
             tx.translate(imagenesPeces.get(0).getHeight() / 2,imagenesPeces.get(0).getWidth() / 2);
-            tx.rotate(Math.PI / 2);
+            tx.rotate(Math.toRadians(i));
             // first - center image at the origin so rotate works OK
             tx.translate(-imagenesPeces.get(0).getWidth() / 2,-imagenesPeces.get(0).getHeight() / 2);
             AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);

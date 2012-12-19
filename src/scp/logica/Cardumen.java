@@ -98,4 +98,11 @@ public class Cardumen {
             peces.get(i).refrescarVecinos(this);
         }
     }
+    
+    // REGLAS DEL MOVIMIENTO
+    
+    
+    public void mover(){
+        
+    }
 }

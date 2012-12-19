@@ -32,7 +32,15 @@ public class Vector {
         return new Vector((v1.getX()+v2.getX()), (v1.getY()+v2.getY()));
     }
     
+    public static Vector sub(Vector v1, Vector v2){
+        return new Vector((v1.getX()-v2.getX()), (v1.getY()-v2.getY()));
+    }
+    
     public static Vector div(Vector v1, double A){
         return new Vector(v1.getX()/A, v1.getY()/A);
+    }
+    
+    public static Vector mult(Vector v1, double A){
+        return new Vector(v1.getX()*A, v1.getY()*A);
     }
 }

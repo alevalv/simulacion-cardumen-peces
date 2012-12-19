@@ -7,6 +7,7 @@ public class Pez {
 	private int ID; 
 	private Vector posicion; // posicion en x y y
 	private Vector velocidad; //unidades / unidad de tiempo
+        private static final double velocidadMaxima=10;
 	/*
 	 * Deberia tener un limite, y un minimo, los peces
 	 * no se quedan quietos creo.
@@ -128,5 +129,36 @@ public class Pez {
     
     public int getID() {
         return ID;
+    }
+    
+    
+    //REGLAS DE MOVIMIENTO
+    
+    private void limitarVelocidad(){
+        if(velocidad.magnitud() > velocidadMaxima){
+            velocidad = Vector.mult(Vector.div(velocidad, velocidad.magnitud()), velocidadMaxima);
+        }
+    }
+    
+    private Vector centroDeMasa(){
+        double x=0;
+        double y=0;
+        for(int i=0;i<vecinos.size();i++){
+            x+=vecinos.get(i).getX();
+            y+=vecinos.get(i).getY();
+        }
+        x/=vecinos.size();
+        y/=vecinos.size();
+        return new Vector(x, y);
+    }
+    
+    
+    /*
+     * los peces tratarán de acercarse lo mayor posible al centro de masa de sus vecinos.
+     */
+    private Vector regla1(){
+        Vector centroDeMasa = centroDeMasa();
+        centroDeMasa = Vector.div(centroDeMasa, vecinos.size());
+        return Vector.div(Vector.sub(centroDeMasa, posicion), 100);
     }
 }

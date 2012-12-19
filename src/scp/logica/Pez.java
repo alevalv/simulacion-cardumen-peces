@@ -1,13 +1,12 @@
 package scp.logica;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Pez {
         private static Integer pecesTotal= null;
 	private int ID; 
-	private double direccion; //radianes
-	private double velocidad; //unidades / unidad de tiempo
+	private Vector posicion; // posicion en x y y
+	private Vector velocidad; //unidades / unidad de tiempo
 	/*
 	 * Deberia tener un limite, y un minimo, los peces
 	 * no se quedan quietos creo.
@@ -27,9 +26,6 @@ public class Pez {
 	 * dar importancia a mantener esta lista vacia!!
 	 */
 	
-	private int posicionX; 
-	private int posicionY;
-	//private int posicionZ;
 	/*
 	 * En esto no estoy seguro, java parece que solo permite
 	 * enteros, y me parece que sería mejor usar doubles para
@@ -53,7 +49,7 @@ public class Pez {
 	
 	private static double distanciaFinal;
 	/*
-	 * Distancia que indica cuando un pez debe moverse si se encuentra
+	 * Distancia que indica cuando un pez debe moverse5 si se encuentra
          * muy cerca al borde de la pantalla
 	 */
         
@@ -61,10 +57,11 @@ public class Pez {
         /*
          * Distancia maxima en la cual un pez puede ser vecino de otro pez
          */
+        
 	
-        Pez(int posicionX, int posicionY){
-            this.posicionX=posicionX;
-            this.posicionY=posicionY;
+        Pez(double x, double y){
+            posicion = new Vector(x, y);
+            velocidad = new Vector(10, 0);
             if(pecesTotal==null){
                 pecesTotal=0;
             }
@@ -122,12 +119,12 @@ public class Pez {
 		return false;
 	}
 
-    public int getPosicionX() {
-        return posicionX;
+    public double getX() {
+        return posicion.getX();
     }
 
-    public int getPosicionY() {
-        return posicionY;
+    public double getY() {
+        return posicion.getY();
     }
 
     public int getID() {

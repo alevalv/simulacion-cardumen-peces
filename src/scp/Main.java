@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import scp.interfaz.Acuario;
 import scp.interfaz.Estilo;
-import scp.interfaz.InterfazTotal;
 
 public class Main {
 
@@ -26,7 +26,10 @@ public class Main {
          System.out.println ("Metal Look & Feel no es soportada en esta plataforma");
          System.exit(0);
       }
-        InterfazTotal Inter=new InterfazTotal();
+        Acuario Ventana2 = new Acuario();
+        Ventana2.setVisible(true);
+        Ventana2.setResizable(false);
+        Ventana2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }

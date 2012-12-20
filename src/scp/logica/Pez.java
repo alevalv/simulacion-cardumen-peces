@@ -24,6 +24,9 @@ public class Pez {
         private Vector atractor;
         private Vector repulsor;
         
+        private static final double velocidadAtraccion=3;
+        private static final double velocidadRepulsion=10;
+        
         private static final double distanciaMaximaVecinos = 100;
         /*
          * Distancia maxima en la cual un pez puede ser vecino de otro pez
@@ -217,16 +220,16 @@ public class Pez {
             double diffx=atractor.getX()-posicion.getX();
             double diffy=atractor.getY()-posicion.getY();
             if(diffx<0){
-                salida.setX(-3);
+                salida.setX(-velocidadAtraccion);
             }
             else{
-                salida.setX(3);
+                salida.setX(velocidadAtraccion);
             }
             if(diffy<0){
-                salida.setY(-3);
+                salida.setY(-velocidadAtraccion);
             }
             else{
-                salida.setY(3);
+                salida.setY(velocidadAtraccion);
             }
         }
         return salida;
@@ -242,16 +245,16 @@ public class Pez {
             double diffx=repulsor.getX()-posicion.getX();
             double diffy=repulsor.getY()-posicion.getY();
             if(diffx<0){
-                salida.setX(3/diffx);
+                salida.setX(velocidadRepulsion/diffx);
             }
             else{
-                salida.setX(-3/diffx);
+                salida.setX(-velocidadRepulsion/diffx);
             }
             if(diffy<0){
-                salida.setY(3/diffy);
+                salida.setY(velocidadRepulsion/diffy);
             }
             else{
-                salida.setY(-3/diffy);
+                salida.setY(-velocidadRepulsion/diffy);
             }
         }
         return salida;

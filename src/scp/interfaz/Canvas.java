@@ -5,8 +5,11 @@
 package scp.interfaz;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
+import scp.controlador.Controlador;
 
 
 /**
@@ -16,10 +19,10 @@ import javax.swing.JPanel;
  *
  */
 
-public class Canvas extends JPanel{
+public class Canvas extends JPanel implements MouseListener {
     //creacion de un bufferedimage para el parpadeo
     private BufferedImage imageBufferPeces;
-    
+    private Controlador miControlador;
     Canvas(int x, int y){
         setSize(x,y);
     }
@@ -40,4 +43,36 @@ public class Canvas extends JPanel{
         repaint();
     }
 
+    public void setControlador(Controlador miControlador){
+        this.miControlador=miControlador;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me) {}
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+        if(me.getButton()==MouseEvent.BUTTON1){
+            miControlador.crearAtractor(me.getX(), me.getY());
+        }
+        else if(me.getButton()==MouseEvent.BUTTON2){
+            miControlador.crearRepulsor(me.getX(), me.getY());
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        if(me.getButton()==MouseEvent.BUTTON1){
+            miControlador.eliminarAtractor();
+        }
+        else if(me.getButton()==MouseEvent.BUTTON2){
+            miControlador.eliminarRepulsor();
+        }
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {}
+
+    @Override
+    public void mouseExited(MouseEvent me) {}
 }

@@ -36,6 +36,22 @@ public class Controlador implements ActionListener {
         time = new Timer(100, this);
     }
 
+    public void crearRepulsor(int x, int y){
+        cardumen.setRepulsor(x, y);
+    }
+    
+    public void crearAtractor(int x, int y){
+        cardumen.setAtractor(x, y);
+    }
+    
+    public void eliminarRepulsor(){
+        cardumen.rmRepulsor();
+    }
+    
+    public void eliminarAtractor(){
+        cardumen.rmAtractor();
+    }
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         cardumen.mover();

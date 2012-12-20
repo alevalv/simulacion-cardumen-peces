@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 public class Cardumen {
     private ArrayList<Pez> peces;
+    private Vector repulsor;
+    private Vector atractor;
     /*
      * corrimiento indica el tamaño en bits que ocupa el identificador de un pez.
      * Por ejemplo, si tenemos 256 peces, se necesitan 8 bits.
@@ -32,9 +34,10 @@ public class Cardumen {
             Pez pez = new Pez(x, y);
             peces.add(pez);
         }
-        System.out.println(peces);
         refrescarDistancias();
         refrescarVecinos();
+        repulsor = null;
+        atractor = null;
     }
     
     public Pez getPez(int id){
@@ -43,6 +46,30 @@ public class Cardumen {
     
     public int size(){
         return peces.size();
+    }
+    
+    public void setRepulsor(int x, int y){
+        repulsor = new Vector(x, y);
+    }
+    
+    public void setAtractor(int x, int y){
+        atractor = new Vector(x, y);
+    }
+
+    public Vector getRepulsor() {
+        return repulsor;
+    }
+
+    public Vector getAtractor() {
+        return atractor;
+    }
+    
+    public void rmRepulsor(){
+        repulsor = null;
+    }
+    
+    public void rmAtractor(){
+        atractor = null;
     }
     /*
      * Calcula una llave (única) para un par de peces para usarla

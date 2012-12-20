@@ -34,7 +34,7 @@ public class Vector {
     }
     
     public double direccion(){
-        double dir = Math.atan2(y, x);
+        double dir = Math.atan2(-y, x);
         if(dir<0){
             dir+=2*Math.PI;
         }

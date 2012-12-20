@@ -20,24 +20,9 @@ public class Pez {
 	 * tiempo
 	 * 
 	 */
-	
-	private ArrayList<Object> depredadoresVecinos;
-	/*
-	 * Debería llenarse dinamicamente cada vez que se
-	 * detecte un depredador cercano al pez. Se le debe
-	 * dar importancia a mantener esta lista vacia!!
-	 */
-	
-	/*
-	 * En esto no estoy seguro, java parece que solo permite
-	 * enteros, y me parece que sería mejor usar doubles para
-	 * realizar una animación más clara.
-	 */
-	
-	/*
-	 * Cada pez tratará de seguir la posición de sus vecinos
-	 * a menos que encuentre comida o un depredador
-	 */
+        
+        private Vector atractor;
+        private Vector repulsor;
         
         private static final double distanciaMaximaVecinos = 100;
         /*
@@ -71,6 +56,8 @@ public class Pez {
                     vecinos.add(pez);
                 }
             }
+            atractor = cardumen.getAtractor();
+            repulsor = cardumen.getRepulsor();
         }
         
         
@@ -221,12 +208,69 @@ public class Pez {
         return v;
     }
     
+    /* 
+     * Si existe un atractor, el pez tratará de acercarse a el.
+     */
+    private Vector regla5(){
+        Vector salida = new Vector();
+        if(atractor!=null){
+            double diffx=atractor.getX()-posicion.getX();
+            double diffy=atractor.getY()-posicion.getY();
+            if(diffx<0){
+                salida.setX(-3);
+            }
+            else{
+                salida.setX(3);
+            }
+            if(diffy<0){
+                salida.setY(-3);
+            }
+            else{
+                salida.setY(3);
+            }
+        }
+        return salida;
+    }
+    
+    /*
+     * Si existe un repulsor, el pez tratará de alejarse de el
+     */
+    
+    private Vector regla6(){
+        Vector salida = new Vector();
+        if(repulsor!=null){
+            double diffx=repulsor.getX()-posicion.getX();
+            double diffy=repulsor.getY()-posicion.getY();
+            if(diffx<0){
+                salida.setX(3/diffx);
+            }
+            else{
+                salida.setX(-3/diffx);
+            }
+            if(diffy<0){
+                salida.setY(3/diffy);
+            }
+            else{
+                salida.setY(-3/diffy);
+            }
+        }
+        return salida;
+    }
+    
     public void mover(){
         Vector regla1= regla1();
         Vector regla2= regla2();
         Vector regla3= regla3();
         Vector regla4= regla4();
-        velocidad = Vector.add(Vector.add(Vector.add(Vector.add(regla3, regla4), regla2), regla1), velocidad);
+        Vector regla5= regla5();
+        Vector regla6= regla6();
+        velocidad = Vector.add(Vector.add(Vector.add(Vector.add(Vector.add(Vector.add(regla6,
+                regla5),
+                regla4), 
+                regla3), 
+                regla2), 
+                regla1), 
+                velocidad);
         reguladorVelocidad();
         posicion = Vector.add(posicion, velocidad);
     }

@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import scp.controlador.Controlador;
 
 
@@ -52,20 +53,20 @@ public class Canvas extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent me) {
-        if(me.getButton()==MouseEvent.BUTTON1){
+        if(SwingUtilities.isLeftMouseButton(me)){
             miControlador.crearAtractor(me.getX(), me.getY());
         }
-        else if(me.getButton()==MouseEvent.BUTTON2){
+        else if(SwingUtilities.isRightMouseButton(me)){
             miControlador.crearRepulsor(me.getX(), me.getY());
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        if(me.getButton()==MouseEvent.BUTTON1){
+        if(SwingUtilities.isLeftMouseButton(me)){
             miControlador.eliminarAtractor();
         }
-        else if(me.getButton()==MouseEvent.BUTTON2){
+        else if(SwingUtilities.isRightMouseButton(me)){
             miControlador.eliminarRepulsor();
         }
     }

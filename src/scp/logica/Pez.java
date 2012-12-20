@@ -171,8 +171,8 @@ public class Pez {
      */
     private Vector regla1(){
         Vector centroDeMasa = centroDeMasa();
-        centroDeMasa = Vector.div(centroDeMasa, vecinos.size());
-        return Vector.div(Vector.sub(centroDeMasa, posicion), 10);
+        //centroDeMasa = Vector.div(centroDeMasa, vecinos.size());
+        return Vector.div(Vector.sub(centroDeMasa, posicion), 100);
     }
     
     /*
@@ -222,7 +222,7 @@ public class Pez {
     }
     
     public void mover(){
-        Vector regla1= new Vector(); // regla1();
+        Vector regla1= regla1();
         Vector regla2= regla2();
         Vector regla3= regla3();
         Vector regla4= regla4();

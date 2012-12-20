@@ -4,10 +4,9 @@
  */
 package scp.interfaz;
 
-
-
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import javax.swing.JPanel;
 
 
 /**
@@ -17,16 +16,16 @@ import java.awt.image.BufferedImage;
  *
  */
 
-public class micanvas extends Canvas{
+public class Canvas extends JPanel{
     //creacion de un bufferedimage para el parpadeo
     private BufferedImage imageBufferPeces;
     
-    micanvas(int x, int y){
+    Canvas(int x, int y){
         setSize(x,y);
     }
     
     @Override
-    public void paint(Graphics g){
+    public void paintComponent(Graphics g){
         g.drawImage(imageBufferPeces, 0, 0, this);
     }
     

@@ -15,7 +15,7 @@ import scp.controlador.Controlador;
 
 public class Acuario extends JFrame{
     Container contenedor;
-    micanvas Canvas;
+    Canvas Canvas;
     Rectangle r;
     public Acuario(){
         super("Cardumen de peces");
@@ -24,7 +24,7 @@ public class Acuario extends JFrame{
         setResizable(false);
         r=getBounds();
         contenedor = getContentPane();
-        Canvas = new micanvas(r.width,r.height);
+        Canvas = new Canvas(r.width,r.height);
         
         contenedor.add(Canvas);
         Controlador controlador;

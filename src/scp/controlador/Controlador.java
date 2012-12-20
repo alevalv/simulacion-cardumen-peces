@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.Timer;
 import scp.interfaz.CardumenGrafico;
-import scp.interfaz.micanvas;
+import scp.interfaz.Canvas;
 import scp.logica.Cardumen;
 
 /**
@@ -21,12 +21,12 @@ public class Controlador implements ActionListener {
     private Timer time;
     private Cardumen cardumen;
     private CardumenGrafico cardumenGrafico;
-    private micanvas Canvas;
+    private Canvas Canvas;
     int width;
     int height;
     int i;
     
-    public Controlador(int peces, int width, int height, micanvas Canvas) throws IOException {
+    public Controlador(int peces, int width, int height, Canvas Canvas) throws IOException {
         cardumen = new Cardumen(peces, width, height);
         cardumenGrafico = new CardumenGrafico();
         this.Canvas=Canvas;

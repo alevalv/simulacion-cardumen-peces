@@ -17,9 +17,9 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
     @Override
    public String getName() { return "Estilo"; }
 
-   private final ColorUIResource primary1 = new ColorUIResource(216, 128, 225);
+   private final ColorUIResource primary1 = new ColorUIResource(27, 11, 172);
    private final ColorUIResource primary2 = new ColorUIResource(255, 255, 255);
-   private final ColorUIResource primary3 = new ColorUIResource(141, 45, 196);
+   private final ColorUIResource primary3 = new ColorUIResource(37, 80, 252);
 
    private final ColorUIResource secondary1 = new ColorUIResource(216, 128, 225);
    private final ColorUIResource secondary2 = new ColorUIResource(216, 128, 225);

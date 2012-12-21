@@ -1,9 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package scp.interfaz;
-
 
 import java.awt.Container;
 import java.awt.Rectangle;
@@ -13,19 +8,21 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import scp.controlador.Controlador;
 
-public class Acuario extends JFrame{
+public class Acuario extends JFrame {
+
     Container contenedor;
     Canvas Canvas;
     Rectangle r;
-    public Acuario(){
+
+    public Acuario() {
         super("Cardumen de peces");
-        setSize(1000,600);
+        setSize(1000, 600);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setResizable(false);
-        r=getBounds();
+        r = getBounds();
         contenedor = getContentPane();
-        Canvas = new Canvas(r.width,r.height);
-        
+        Canvas = new Canvas(r.width, r.height);
+
         contenedor.add(Canvas);
         Controlador controlador;
         try {
@@ -34,5 +31,5 @@ public class Acuario extends JFrame{
         } catch (IOException ex) {
             Logger.getLogger(Acuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 }

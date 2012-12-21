@@ -47,9 +47,7 @@ public class Controlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         cardumen.mover();
-        //i= (i+1)%100;
         Canvas.nuevoBuffer(cardumenGrafico.pintarCardumen(cardumen, width, height));
-        //time.stop();
     }
 
     public void empezarTimer() {
